@@ -19,45 +19,25 @@ public class App
     public static void main( String[] args )
     {
     	
-//    	Laptop laptop = new Laptop();
-//    	laptop.setId(6);
-//    	laptop.setLname("Asus");
-//    
-//    	
-//    	Student student = new Student();
-//    	student.setName("sachin");
-//    	student.setMarks(100);
-//    	student.setRollNo(6);
-//    	student.getLaptops().add(laptop);
-//    	
-//    	laptop.getStud().add(student);
     	
-    	Configuration conf = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
+    	Configuration conf = new Configuration().configure().addAnnotatedClass(Aliean.class);
     	ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
     	SessionFactory sf = conf.buildSessionFactory(reg);
     	Session session = sf.openSession();
     	Transaction tx = session.beginTransaction();
     	
-//    	session.save(laptop);
-//    	session.save(student);
-//    	session.save(laptop2);
-    	Student st = (Student) session.get(Student.class, 6);
+    	Aliean st = (Aliean) session.get(Aliean.class, 4);
     	System.out.println(st);
-    	List<Laptop> lst = st.getLaptops();
-    	for(Laptop lp:lst) {
-    		System.out.println(lp);
-    	}
     	tx.commit();
+    	session.close();
+    	
+    	Session session2 = sf.openSession();
+    	Transaction tx2 = session2.beginTransaction();
+    	Aliean st2 = (Aliean) session2.get(Aliean.class, 4);
+    	System.out.println(st2);
+    	tx2.commit();
+    	session2.close();
         
-//        Configuration conf = new Configuration().configure().addAnnotatedClass(Aliean.class);
-//        ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
-//        SessionFactory sf = conf.buildSessionFactory(reg);
-//        Session session = sf.openSession();
-//        
-//        Transaction tx = session.beginTransaction();
-//        session.save(aliean);
-//        Aliean gettedAliean = (Aliean)session.get(Aliean.class, 4);
-//        tx.commit();
-//        System.out.println("manually: "+gettedAliean);
+
     }
 }

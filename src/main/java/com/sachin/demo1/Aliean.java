@@ -1,13 +1,20 @@
 package com.sachin.demo1;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 //@Table(name="table_name")
 //@Column(name="column_name")
 //@Transient
 //@Embeddable
+
 @Entity
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 public class Aliean {
 	@Id
 	private int id;
