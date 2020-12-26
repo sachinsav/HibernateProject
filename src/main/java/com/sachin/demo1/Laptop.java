@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Laptop {
@@ -33,6 +33,10 @@ public class Laptop {
 	}
 	public void setLname(String lname) {
 		this.lname = lname;
+	}
+	@Override
+	public String toString() {
+		return "Laptop [id=" + id + ", lname=" + lname + "]";
 	}
 	
 }

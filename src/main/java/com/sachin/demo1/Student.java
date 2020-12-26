@@ -3,10 +3,10 @@ package com.sachin.demo1;
 import java.util.ArrayList;
 import java.util.*;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 
 
 @Entity
@@ -15,7 +15,7 @@ public class Student {
 	private int rollNo;
 	private int marks;
 	private String name;
-	@ManyToMany(mappedBy="stud")
+	@ManyToMany(mappedBy="stud",fetch=FetchType.EAGER)
 	private List<Laptop> laptops = new ArrayList<Laptop>();
 	
 	public List<Laptop> getLaptops() {
@@ -41,6 +41,10 @@ public class Student {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	@Override
+	public String toString() {
+		return "Student [rollNo=" + rollNo + ", marks=" + marks + ", name=" + name + "]";
 	}
 	
 	
