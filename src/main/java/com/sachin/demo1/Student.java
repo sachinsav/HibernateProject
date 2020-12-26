@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -13,7 +15,7 @@ public class Student {
 	private int rollNo;
 	private int marks;
 	private String name;
-	@OneToMany(mappedBy="stud")
+	@ManyToMany(mappedBy="stud")
 	private List<Laptop> laptops = new ArrayList<Laptop>();
 	
 	public List<Laptop> getLaptops() {

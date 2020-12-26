@@ -1,7 +1,11 @@
 package com.sachin.demo1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -9,13 +13,13 @@ public class Laptop {
 	@Id
 	private int id;
 	private String lname;
-	@ManyToOne
-	private Student stud;
+	@ManyToMany
+	private List<Student> stud = new ArrayList<Student>();
 	
-	public Student getStud() {
+	public List<Student> getStud() {
 		return stud;
 	}
-	public void setStud(Student stud) {
+	public void setStud(List<Student> stud) {
 		this.stud = stud;
 	}
 	public int getId() {

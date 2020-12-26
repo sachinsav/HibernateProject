@@ -17,16 +17,16 @@ public class App
     {
     	
     	Laptop laptop = new Laptop();
-    	laptop.setId(3);
+    	laptop.setId(4);
     	laptop.setLname("Asus");
     	
     	Student student = new Student();
     	student.setName("sachin");
     	student.setMarks(100);
-    	student.setRollNo(3);
+    	student.setRollNo(4);
     	student.getLaptops().add(laptop);
     	
-    	laptop.setStud(student);
+    	laptop.getStud().add(student);
     	
     	Configuration conf = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
     	ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
