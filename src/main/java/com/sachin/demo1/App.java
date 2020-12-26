@@ -2,6 +2,7 @@ package com.sachin.demo1;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -26,14 +27,18 @@ public class App
     	Session session = sf.openSession();
     	Transaction tx = session.beginTransaction();
     	
-    	Aliean st = (Aliean) session.get(Aliean.class, 4);
+    	Query q1 = session.createQuery("from Aliean where id=4");
+    	q1.setCacheable(true);
+    	Aliean st = (Aliean) q1.uniqueResult();
     	System.out.println(st);
     	tx.commit();
     	session.close();
     	
     	Session session2 = sf.openSession();
     	Transaction tx2 = session2.beginTransaction();
-    	Aliean st2 = (Aliean) session2.get(Aliean.class, 4);
+    	Query q2 = session2.createQuery("from Aliean where id=4");
+    	q2.setCacheable(true);
+    	Aliean st2 = (Aliean) q2.uniqueResult();
     	System.out.println(st2);
     	tx2.commit();
     	session2.close();
