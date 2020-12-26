@@ -7,7 +7,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
-
+/*
+ * get is used for get the object, it return the actual object if found else return null
+ * load is used for get the object, it return the proxy object(proxy object return object when we will use it) if found else throws Object not found exception
+ */
 public class LifeCycleMethod {
 	public static void main(String[] args) {
 		
