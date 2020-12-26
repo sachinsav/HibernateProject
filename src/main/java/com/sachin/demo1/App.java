@@ -15,24 +15,37 @@ public class App
 {
     public static void main( String[] args )
     {
-    	FullName fn = new FullName();
-    	fn.setFname("sachin");
-    	fn.setLname("sav");
-    	fn.setMname("kumar");
-        Aliean aliean = new Aliean();
-        aliean.setId(5);
-        aliean.setFullName(fn);
-        aliean.setColor("yellow");
+    	
+    	Laptop laptop = new Laptop();
+    	laptop.setId(3);
+    	laptop.setLname("Asus");
+    	
+    	Student student = new Student();
+    	student.setName("sachin");
+    	student.setMarks(100);
+    	student.setRollNo(3);
+    	student.getLaptops().add(laptop);
+    	
+    	laptop.setStud(student);
+    	
+    	Configuration conf = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
+    	ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
+    	SessionFactory sf = conf.buildSessionFactory(reg);
+    	Session session = sf.openSession();
+    	Transaction tx = session.beginTransaction();
+    	session.save(laptop);
+    	session.save(student);
+    	tx.commit();
         
-        Configuration conf = new Configuration().configure().addAnnotatedClass(Aliean.class);
-        ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
-        SessionFactory sf = conf.buildSessionFactory(reg);
-        Session session = sf.openSession();
-        
-        Transaction tx = session.beginTransaction();
-        session.save(aliean);
-        Aliean gettedAliean = (Aliean)session.get(Aliean.class, 4);
-        tx.commit();
-        System.out.println("manually: "+gettedAliean);
+//        Configuration conf = new Configuration().configure().addAnnotatedClass(Aliean.class);
+//        ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
+//        SessionFactory sf = conf.buildSessionFactory(reg);
+//        Session session = sf.openSession();
+//        
+//        Transaction tx = session.beginTransaction();
+//        session.save(aliean);
+//        Aliean gettedAliean = (Aliean)session.get(Aliean.class, 4);
+//        tx.commit();
+//        System.out.println("manually: "+gettedAliean);
     }
 }
