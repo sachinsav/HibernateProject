@@ -18,14 +18,11 @@ public class HQLPractice {
 		Session session = sf.openSession();
 		session.beginTransaction();
 		
-		Query q1 = session.createQuery("from Classes where id=1");
-		List<Classes> lst = q1.list();
-		for(Classes cl: lst) {
-			System.out.println(cl);
+		Query q1 = session.createQuery("select id,name from Classes");
+		List<Object[]> rs = q1.list();
+		for(Object[] cl: rs) {
+			System.out.println(cl[0]+" : "+cl[1]);
 		}
-		
-		Classes cl2 = (Classes)q1.uniqueResult();
-		System.out.println(cl2);
 		session.getTransaction().commit();
 		
 	}
